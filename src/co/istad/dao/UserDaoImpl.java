@@ -3,7 +3,9 @@ package co.istad.dao;
 import co.istad.connection.ConnectionDB;
 import co.istad.model.Book;
 import co.istad.model.User;
+import co.istad.storage.Storage;
 import co.istad.util.PasswordEncoder;
+import co.istad.util.Singleton;
 
 import java.sql.*;
 import java.util.List;
@@ -12,6 +14,7 @@ public class UserDaoImpl implements UserDao{
     private final Connection connection;
     public UserDaoImpl(){
         connection = ConnectionDB.getConnection();
+
     }
     @Override
     public User create(User user) {
@@ -49,6 +52,7 @@ public class UserDaoImpl implements UserDao{
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
                 user.setEmail(rs.getString("username"));
+                user.setId(rs.getLong("id"));
                 System.out.println("Login successfully...!");
                 return user;
             }

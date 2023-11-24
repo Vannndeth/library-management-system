@@ -3,14 +3,17 @@ package co.istad.service;
 import co.istad.dao.UserDao;
 import co.istad.model.Book;
 import co.istad.model.User;
+import co.istad.storage.Storage;
 import co.istad.util.Singleton;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService{
     private final UserDao userDao;
+    private final Storage storage;
     public UserServiceImpl(){
         userDao = Singleton.userDaoImpl();
+        storage = Singleton.getStorage();
     }
     @Override
     public User create(User user) {
@@ -24,7 +27,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User login(User user) {
-        return userDao.login(user);
+        User res = userDao.login(user);
+        storage.setId( res.getId() );
+        storage.setUsername( res.getUsername() );
+        return res;
     }
 
     @Override
