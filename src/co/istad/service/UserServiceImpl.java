@@ -1,6 +1,7 @@
 package co.istad.service;
 
 import co.istad.dao.UserDao;
+import co.istad.model.Book;
 import co.istad.model.User;
 import co.istad.util.Singleton;
 
@@ -34,6 +35,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getById(Long id) {
         return null;
+    }
+
+    @Override
+    public Book getByTitle(String title) {
+        return userDao.getByTitle(title);
     }
 
     @Override

@@ -11,6 +11,7 @@ public class Singleton {
     private static UserDaoImpl userDao;
     private static UserServiceImpl userService;
     private static UserController userController;
+    private static Seeder seeder;
 
     public static Scanner scanner(){
         if(scanner == null){
@@ -36,4 +37,12 @@ public class Singleton {
         }
         return userController;
     }
+    public static Seeder getSeeder(){
+        if(seeder == null){
+            seeder = new Seeder();
+        }
+        return seeder;
+    }
+
+
 }

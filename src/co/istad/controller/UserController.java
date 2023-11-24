@@ -5,6 +5,7 @@ import co.istad.model.User;
 import co.istad.service.UserService;
 import co.istad.util.Singleton;
 import co.istad.view.LoginView;
+import co.istad.view.SearchBook;
 import co.istad.view.SignupView;
 
 import java.util.Scanner;
@@ -28,6 +29,11 @@ public class UserController {
         User user = new User();
         LoginView.login(user, scanner);
         userService.login(user);
+    }
+    public void getByTitle(){
+        String title;
+        title = SearchBook.searchByTitle(scanner);
+        userService.getByTitle(title);
     }
     public void getAllUser(){
 

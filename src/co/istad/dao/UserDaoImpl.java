@@ -1,6 +1,7 @@
 package co.istad.dao;
 
 import co.istad.connection.ConnectionDB;
+import co.istad.model.Book;
 import co.istad.model.User;
 
 import java.sql.*;
@@ -65,6 +66,26 @@ public class UserDaoImpl implements UserDao{
     @Override
     public User getById(Long id) {
         return null;
+    }
+
+    @Override
+    public Book getByTitle(String title) {
+        Book book = null;
+        String query = """
+                    SELECT * FROM books
+                    WHERE title = ?
+                """;
+        try (PreparedStatement statement = connection.prepareStatement(query)){
+            statement.setString(1, title);
+            book = new Book();
+            if(book.getTitle().equals(title)){
+                ResultSet rs = statement.executeQuery();
+                System.out.println("Search successfully...!");
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return book;
     }
 
     @Override
