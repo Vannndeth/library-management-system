@@ -1,11 +1,8 @@
 package co.istad.init;
 
 import co.istad.controller.UserController;
-import co.istad.model.User;
 import co.istad.util.Seeder;
 import co.istad.util.Singleton;
-import co.istad.view.LoginView;
-import com.sun.tools.javac.Main;
 
 import java.util.Scanner;
 
