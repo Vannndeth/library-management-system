@@ -5,9 +5,11 @@ import co.istad.model.User;
 import co.istad.storage.Storage;
 import co.istad.util.Seeder;
 import co.istad.util.Singleton;
-import co.istad.view.LoginView;
 import co.istad.view.MenuView;
+import co.istad.view.UserView;
 import com.sun.tools.javac.Main;
+import co.istad.util.Seeder;
+import co.istad.util.Singleton;
 
 import java.awt.*;
 import java.util.Scanner;
@@ -16,8 +18,8 @@ public class MainApplication {
     private final Scanner scanner;
     private final UserController userController;
     private final Seeder seeder;
-
     private final Storage storage;
+
     public MainApplication(){
         scanner = Singleton.scanner();
         userController = Singleton.userController();
@@ -35,22 +37,14 @@ public class MainApplication {
                 case 1 -> {
                     User user = new User();
                     String selected = null;
-                    LoginView.login(user, scanner);
+                    UserView.login(user, scanner);
                     MenuView.Menu( selected, scanner );
-//                    switch ( selected ){
-//                        case "n" -> {
-//                            System.out.println("N)ext Page");
-//                        }
-//                        case "p" -> {
-//                            System.out.println("N)ext Page");
-//                        }
-//                        case "f" -> {
-//                            System.out.println("N)ext Page");
-//                        }
-//                        case "l" -> {
-//                            System.out.println("N)ext Page");
-//                        }
-//                    }
+                    switch ( selected ){
+                        case "n" -> System.out.println("N)ext Page");
+                        case "p" -> System.out.println("P)revious Page");
+                        case "f" -> System.out.println("F)irst Page");
+                        case "l" -> System.out.println("L)ast Page");
+                    }
                 }
                 case 2 -> {
                     userController.signup();

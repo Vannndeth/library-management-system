@@ -13,7 +13,10 @@ public class Seeder {
     }
     public void roleSeeder(){
         String query = """
-                    INSERT INTO roles (id, name) VALUES (1, 'ADMIN'), (2, 'LIBRARIAN'), (3, 'USER')
+                    INSERT INTO roles (id, name) 
+                    VALUES (1, 'ADMIN'), 
+                    (2, 'LIBRARIAN'), 
+                    (3, 'USER')
                 """;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.executeUpdate();
