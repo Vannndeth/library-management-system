@@ -25,6 +25,7 @@ public class MainApplication {
         userController = Singleton.userController();
         seeder = Singleton.getSeeder();
         seeder.roleSeeder();
+        seeder.adminSeeder();
         storage = Singleton.getStorage();
     }
     public void initialize(){
@@ -35,16 +36,7 @@ public class MainApplication {
             int option = Integer.parseInt(scanner.nextLine());
             switch (option){
                 case 1 -> {
-                    User user = new User();
-                    String selected = null;
-                    UserView.login(user, scanner);
-                    MenuView.Menu( selected, scanner );
-                    switch ( selected ){
-                        case "n" -> System.out.println("N)ext Page");
-                        case "p" -> System.out.println("P)revious Page");
-                        case "f" -> System.out.println("F)irst Page");
-                        case "l" -> System.out.println("L)ast Page");
-                    }
+                    userController.login();
                 }
                 case 2 -> {
                     userController.signup();

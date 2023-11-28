@@ -2,10 +2,13 @@ package co.istad.dao;
 
 import co.istad.connection.ConnectionDB;
 import co.istad.model.Book;
+import co.istad.model.Role;
 import co.istad.model.User;
 import co.istad.storage.Storage;
 import co.istad.util.PasswordEncoder;
+import co.istad.util.RoleName;
 import co.istad.util.Singleton;
+import co.istad.view.HelperView;
 
 import java.sql.*;
 import java.util.List;
@@ -42,8 +45,10 @@ public class UserDaoImpl implements UserDao{
     @Override
     public User login(User user) {
         String query = """
-                    SELECT * FROM users
-                    WHERE (username = ? OR email = ?) AND password = ?
+                    SELECT u.*, r.name as role_name FROM users u
+                        INNER JOIN roles r
+                        ON r.id = u.role_id
+                        WHERE (username = ? OR email = ?) AND password = ?
                 """;
         try (PreparedStatement statement = connection.prepareStatement(query)){
             statement.setString(1, user.getUsername());
@@ -51,16 +56,18 @@ public class UserDaoImpl implements UserDao{
             statement.setString(3, user.getPassword() );
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
+                Role role = new Role();
                 user.setEmail(rs.getString("username"));
                 user.setId(rs.getLong("id"));
-                System.out.println("Login successfully...!");
-                return user;
+                role.setRoleName( RoleName.valueOf( rs.getString("role_name") ) );
+                role.setId( rs.getLong("role_id") );
+                user.setRole( role );
+                HelperView.message("Login successfully...!");
             }
-            System.out.println("Something wrong!");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return user;
     }
 
     @Override

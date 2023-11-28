@@ -1,10 +1,15 @@
 package co.istad.storage;
 
+import co.istad.model.Role;
+
 import java.util.Objects;
 
 public class Storage {
     private Long id;
     private String username;
+
+    private Role role;
+
 
     public Storage() {
     }
@@ -12,6 +17,12 @@ public class Storage {
     public Storage(Long id, String username) {
         this.id = id;
         this.username = username;
+    }
+
+    public Storage(Long id, String username, Role role) {
+        this.id = id;
+        this.username = username;
+        this.role = role;
     }
 
     @Override
@@ -27,6 +38,7 @@ public class Storage {
         return "Storage{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", role=" + role +
                 '}';
     }
 
@@ -49,5 +61,13 @@ public class Storage {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

@@ -1,5 +1,6 @@
 package co.istad.service;
 
+import co.istad.exception.InputInvalidException;
 import co.istad.model.Author;
 import co.istad.util.Singleton;
 
@@ -12,6 +13,13 @@ public class AuthorServiceImpl implements AuthorService{
     }
     @Override
     public Author create(Author author) {
+        try {
+            if( author.getFirstName().isEmpty() ){
+                throw new InputInvalidException("The firstname field's required!q");
+            }
+        }catch (InputInvalidException e){
+            System.out.println(e.getMessage());
+        }
         return authorService.create(author);
     }
 

@@ -23,4 +23,23 @@ public class Seeder {
         } catch (SQLException e) {}
     }
 
+    public void adminSeeder(){
+        try{
+            String query = """
+                    INSERT INTO users (id,
+                                       username,
+                                       email,
+                                       password,
+                                       role_id,
+                                       salt
+                                        ) 
+                    VALUES (1, 'admin', 'admin@gmail.com', 'admin', 1, ? )  
+                """;
+            PreparedStatement statement = connection.prepareStatement( query );
+            statement.setBytes(1, PasswordEncoder.generateSalt());
+            statement.executeUpdate();
+        }catch (SQLException e){
+        }
+    }
+
 }

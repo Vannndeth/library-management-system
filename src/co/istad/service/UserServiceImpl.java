@@ -28,8 +28,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public User login(User user) {
         User res = userDao.login(user);
-        storage.setId( res.getId() );
-        storage.setUsername( res.getUsername() );
+        if( res.getId() != null ){
+            storage.setId( res.getId() );
+            storage.setUsername( res.getUsername() );
+            storage.setRole( res.getRole() );
+        }
         return res;
     }
 

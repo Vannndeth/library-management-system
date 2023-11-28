@@ -26,11 +26,10 @@ public class AuthorDaoImpl implements AuthorDao{
             statement.setString(2, author.getLastName());
             statement.setString(3, author.getEmail());
             statement.executeUpdate();
-            System.out.println("Signup successfully...!");
+            return author;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return  author;
     }
 
     @Override
