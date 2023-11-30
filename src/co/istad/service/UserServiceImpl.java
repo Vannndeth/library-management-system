@@ -9,10 +9,10 @@ import co.istad.util.Singleton;
 import java.util.List;
 
 public class UserServiceImpl implements UserService{
-    private final UserDao userDao;
+    private final UserDao userFeatureDao;
     private final Storage storage;
     public UserServiceImpl(){
-        userDao = Singleton.userDaoImpl();
+        userFeatureDao = Singleton.userDaoImpl();
         storage = Singleton.getStorage();
     }
     @Override
@@ -20,14 +20,14 @@ public class UserServiceImpl implements UserService{
         if(!user.getConfirmPassword().equals(user.getPassword())){
             System.out.println("Password not matching...!");
         } else {
-            return userDao.create(user);
+            return userFeatureDao.create(user);
         }
         return user;
     }
 
     @Override
     public User login(User user) {
-        User res = userDao.login(user);
+        User res = userFeatureDao.login(user);
         if( res.getId() != null ){
             storage.setId( res.getId() );
             storage.setUsername( res.getUsername() );
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> getALl() {
-        return userDao.getALl();
+        return userFeatureDao.getALl();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Book getByTitle(String title) {
-        return userDao.getByTitle(title);
+        return userFeatureDao.getByTitle(title);
     }
 
     @Override

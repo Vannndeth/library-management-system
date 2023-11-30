@@ -8,19 +8,21 @@ public class Borrow {
     private Integer quantity;
     private LocalDate borrowDate;
     private LocalDate deadline;
-    private boolean status;
+    private boolean isReturn;
+    private boolean isBorrow;
     private User userId;
     private Book bookId;
 
     public Borrow() {
     }
 
-    public Borrow(Long id, Integer quantity, LocalDate borrowDate, LocalDate deadline, boolean status, User userId, Book bookId) {
+    public Borrow(Long id, Integer quantity, LocalDate borrowDate, LocalDate deadline, boolean isReturn, boolean isBorrow, User userId, Book bookId) {
         this.id = id;
         this.quantity = quantity;
         this.borrowDate = borrowDate;
         this.deadline = deadline;
-        this.status = status;
+        this.isReturn = isReturn;
+        this.isBorrow = isBorrow;
         this.userId = userId;
         this.bookId = bookId;
     }
@@ -57,12 +59,20 @@ public class Borrow {
         this.deadline = deadline;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isReturn() {
+        return isReturn;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setReturn(boolean aReturn) {
+        this.isReturn = aReturn;
+    }
+
+    public boolean isBorrow() {
+        return isBorrow;
+    }
+
+    public void setBorrow(boolean borrow) {
+        isBorrow = borrow;
     }
 
     public User getUserId() {
@@ -85,12 +95,12 @@ public class Borrow {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Borrow borrow)) return false;
-        return isStatus() == borrow.isStatus() && getId().equals(borrow.getId()) && getQuantity().equals(borrow.getQuantity()) && getBorrowDate().equals(borrow.getBorrowDate()) && getDeadline().equals(borrow.getDeadline()) && getUserId().equals(borrow.getUserId()) && getBookId().equals(borrow.getBookId());
+        return isReturn() == borrow.isReturn() && isBorrow() == borrow.isBorrow() && getId().equals(borrow.getId()) && getQuantity().equals(borrow.getQuantity()) && getBorrowDate().equals(borrow.getBorrowDate()) && getDeadline().equals(borrow.getDeadline()) && getUserId().equals(borrow.getUserId()) && getBookId().equals(borrow.getBookId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getQuantity(), getBorrowDate(), getDeadline(), isStatus(), getUserId(), getBookId());
+        return Objects.hash(getId(), getQuantity(), getBorrowDate(), getDeadline(), isReturn(), isBorrow(), getUserId(), getBookId());
     }
 
     @Override
@@ -100,7 +110,8 @@ public class Borrow {
                 ", quantity=" + quantity +
                 ", borrowDate=" + borrowDate +
                 ", deadline=" + deadline +
-                ", status=" + status +
+                ", isReturn=" + isReturn +
+                ", isBorrow=" + isBorrow +
                 ", userId=" + userId +
                 ", bookId=" + bookId +
                 '}';

@@ -21,4 +21,19 @@ public class UserView {
         System.out.print("Enter confirm password: ");
         user.setConfirmPassword(scanner.nextLine());
     }
+    public static void userView () {
+        try{
+            System.out.println("1. Search Book");
+            System.out.println("2. Borrow");
+            System.out.println("3. Return");
+            System.out.println("4. View");
+            System.out.println("5. Preview");
+            System.out.println("6. Book Information");
+            System.out.println("7. History");
+            System.out.println("8. Logout");
+
+        }catch ( NumberFormatException e ){
+            System.err.println("Only number required!");
+        }
+    }
 }

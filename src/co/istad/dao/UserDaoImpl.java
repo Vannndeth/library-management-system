@@ -4,16 +4,15 @@ import co.istad.connection.ConnectionDB;
 import co.istad.model.Book;
 import co.istad.model.Role;
 import co.istad.model.User;
-import co.istad.storage.Storage;
 import co.istad.util.PasswordEncoder;
 import co.istad.util.RoleName;
-import co.istad.util.Singleton;
 import co.istad.view.HelperView;
 
 import java.sql.*;
 import java.util.List;
+import java.util.Optional;
 
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
     private final Connection connection;
     public UserDaoImpl(){
         connection = ConnectionDB.getConnection();
@@ -40,6 +39,41 @@ public class UserDaoImpl implements UserDao{
             System.out.println("Username already exist. " + e.getMessage());
         }
         return user;
+    }
+
+    @Override
+    public Optional<Book> searchBookById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Book> searchBookByTitle(String title) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Book> searchBookByAuthor(String author) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Book> searchBookByCategory(String category) {
+        return null;
+    }
+
+    @Override
+    public List<Book> getAllBook() {
+        return null;
+    }
+
+    @Override
+    public Optional<User> searchUserById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> searchUserByUsername(String username) {
+        return Optional.empty();
     }
 
     @Override
@@ -112,7 +146,9 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public User deleteById(Long id) {
+    public User deleteById(Long id){
         return null;
     }
+
+
 }

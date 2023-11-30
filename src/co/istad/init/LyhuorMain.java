@@ -1,28 +1,21 @@
 package co.istad.init;
 
 import co.istad.controller.UserController;
-import co.istad.model.User;
 import co.istad.storage.Storage;
 import co.istad.util.Seeder;
 import co.istad.util.Singleton;
-import co.istad.view.MenuView;
-import co.istad.view.UserView;
-import com.sun.tools.javac.Main;
-import co.istad.util.Seeder;
-import co.istad.util.Singleton;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MainApplication {
+public class LyhuorMain {
     private final Scanner scanner;
     private final UserController userController;
     private final Seeder seeder;
     private final Storage storage;
 
-    public MainApplication(){
+    public LyhuorMain(){
         scanner = Singleton.scanner();
         userController = Singleton.userController();
         seeder = Singleton.getSeeder();
@@ -54,7 +47,7 @@ public class MainApplication {
     public static void main(String[] args) {
         List list = new ArrayList();
 
-        new MainApplication().initialize();
+        new LyhuorMain().initialize();
     }
 }
 

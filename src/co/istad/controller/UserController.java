@@ -66,6 +66,8 @@ public class UserController {
                     }
                     case USER -> {
                         HelperView.welcome("Welcome to user dashboard");
+                        UserView.userView();
+                        return;
                     }
                     case LIBRARIAN -> {
                         HelperView.welcome("Welcome to librarian dashboard");
